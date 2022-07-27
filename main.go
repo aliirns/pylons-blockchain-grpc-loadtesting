@@ -1,7 +1,6 @@
 package main
 
 import (
-	"fmt"
 	"time"
 
 	"github.com/myzhan/boomer"
@@ -35,26 +34,24 @@ func Task2() {
 
 func main() {
 
-	// task1 := &boomer.Task{
-	// 	Name: "Task 1",
-	// 	// The weight is used to distribute goroutines over multiple tasks.
-	// 	Weight: 10,
-	// 	Fn:     Task1,
-	// }
+	task1 := &boomer.Task{
+		Name: "Task 1",
+		// The weight is used to distribute goroutines over multiple tasks.
+		Weight: 10,
+		Fn:     Task1,
+	}
 
-	// numClients := 1000000
-	// spawnRate := float64(100)
-	// globalBoomer = boomer.NewStandaloneBoomer(numClients, spawnRate)
-	// // globalBoomer.AddOutput(boomer.NewConsoleOutput())
-	// globalBoomer.Run(task1)
+	task2 := &boomer.Task{
+		Name: "Task 2",
+		// The weight is used to distribute goroutines over multiple tasks.
+		Weight: 10,
+		Fn:     Task2,
+	}
 
-	// cmd := exec.Command("pylonsd", "tx", "pylons", "create-account", "alii", "", "", "--from alii")
-	// stdout, err := cmd.Output()
-	// if err != nil {
-	// 	fmt.Println(err, stdout)
-	// 	return
-	// }
+	numClients := 1000000
+	spawnRate := float64(100)
+	globalBoomer = boomer.NewStandaloneBoomer(numClients, spawnRate)
+	// globalBoomer.AddOutput(boomer.NewConsoleOutput())
+	globalBoomer.Run(task1, task2)
 
-	// fmt.Print(string(stdout))
-	fmt.Println(createAccount())
 }

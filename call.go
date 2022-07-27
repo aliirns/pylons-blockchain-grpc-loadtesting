@@ -1,7 +1,6 @@
 package main
 
 import (
-	"bufio"
 	"context"
 	"fmt"
 	"log"
@@ -94,16 +93,13 @@ func createAccount() (bool, error) {
 	// if err != nil {
 	// 	return false, err
 	// }
-	cmd = exec.Command("pylonsd", "tx", "pylons", "create-account", name, token, referral, "--from "+name, "-y")
-	//_, err = cmd.Output()
-	stderr, _ := cmd.StderrPipe()
-	if err := cmd.Start(); err != nil {
-		log.Fatal(err)
-	}
+	cmd = exec.Command("pylonsd", "tx", "pylons", "create-account", name, token, referral, "--from", name, "-y")
+	_, err = cmd.Output()
 
-	scanner := bufio.NewScanner(stderr)
-	for scanner.Scan() {
-		fmt.Println(scanner.Text())
+	if err != nil {
+		fmt.Println(name)
+		fmt.Println("Error creating account")
+		return false, err
 	}
 	return true, nil
 
