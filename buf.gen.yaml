@@ -1,0 +1,8 @@
+version: v1
+plugins:
+  - remote: buf.build/grpc/plugins/python
+    out: proto/python/
+    opt:
+  - remote: buf.build/protocolbuffers/plugins/python
+    out: proto/python
+    path:
